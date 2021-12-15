@@ -10,7 +10,7 @@ namespace WebApi.Controllers
     public class ItemController : ControllerBase
     {
         private readonly IItemsRepository<Item> repository;
-        public ItemController() => repository = new InMemItemsRepository();
+        public ItemController(IItemsRepository<Item> repository) => this.repository = repository;
 
         [HttpGet]
         public IEnumerable<ItemDto> GetItems() => repository.GetItems().Select(item => item.AsDto());

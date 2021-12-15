@@ -38,17 +38,26 @@ namespace WebApi.Controllers
             return CreatedAtAction(nameof(CreateItem), new { id = item.Id }, item.AsDto());
         }
         [HttpPut("{id}")]
-        public ActionResult UpdadeItem(Guid id, UpdateItemDto item)
+        public ActionResult UpdateItem(Guid id, UpdateItemDto itemDto)
         {
             var existingItem = repository.GetItem(id);
-            if(existingItem is null) { NotFound(); }
+            if(existingItem is null) { return NotFound(); }
             Item updatedItem = existingItem with
             {
-                Name = existingItem.Name,
-                Price = existingItem.Price
+                Name = itemDto.Name,
+                Price = itemDto.Price
             };
             repository.UpdateItem(updatedItem);
             return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public ActionResult DeleteItem(Guid id)
+        {
+            var existingItem = repository.GetItem(id);
+            if( existingItem is null) { return NotFound(); }
+            repository.DeleteItem(id);
+            return NoContent();
+
         }
     }
 }

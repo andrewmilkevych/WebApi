@@ -23,7 +23,8 @@ namespace WebApi.Repository
 
         public void DeleteItem(Guid id)
         {
-            throw new NotImplementedException();
+            var index = items.FindIndex(existingItem => existingItem.Id == id);
+            items.RemoveAt(index);
         }
 
         public void UpdateItem(Item item)

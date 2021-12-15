@@ -8,9 +8,6 @@ namespace WebApi.Repository
         public T GetItem(Guid id);
         void CreateItem(T item);
         void UpdateItem(T item);
-
         void DeleteItem(Guid id);   
-
-
     }
 }

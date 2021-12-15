@@ -3,7 +3,7 @@ using WebApi.Entitys;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IItemsRepository<Car>, InMemCarsRepository>();
+builder.Services.AddSingleton<IItemsRepository<Item>, InMemItemsRepository>();
 // Add services to the container.
 
 builder.Services.AddControllers();
